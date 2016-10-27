@@ -46,6 +46,12 @@ class TimerContainer extends React.Component {
 
   handleTimeTick(time) {
     this.setState({time});
+    if (!time) {
+      base.post(`${this.props.baseUrl}/state`, {
+        context: this,
+        data: 'FAILURE'
+      });
+    }
   }
 
   render() {
