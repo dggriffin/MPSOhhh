@@ -1,10 +1,14 @@
 import 'core-js/fn/object/assign';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import App from './components/App';
 import ViewContainer from './containers/ViewContainer';
 import QuantityView from './components/QuantityView';
 import MatchingView from './components/MatchingView';
 import StockView from './components/StockView';
+import SignUpContainer from './containers/SignUpContainer';
+import AdminView from './components/AdminView';
+import AdminContainer from './containers/AdminContainer';
 
 import { Router, Route, browserHistory } from 'react-router'
 
@@ -46,11 +50,45 @@ const StockRoute = React.createClass({
     }
 });
 
+const QuantityAdminRoute = React.createClass({
+    render() {
+      return (
+        <AdminContainer baseUrl='quantity'>
+          <AdminView/>
+        </AdminContainer>
+      );
+    }
+});
+
+const MatchingAdminRoute = React.createClass({
+    render() {
+      return (
+        <AdminContainer baseUrl='matching'>
+          <AdminView/>
+        </AdminContainer>
+      );
+    }
+});
+
+const StockAdminRoute = React.createClass({
+    render() {
+      return (
+        <AdminContainer baseUrl='stock'>
+          <AdminView/>
+        </AdminContainer>
+      );
+    }
+});
+
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path="/">
+    <Route path="/" component={App}>
       <Route path="quantity" component={QuantityRoute}/>
       <Route path="matching" component={MatchingRoute}/>
       <Route path="stock" component={StockRoute}/>
+      <Route path="quantityAdmin" component={QuantityAdminRoute}/>
+      <Route path="matchingAdmin" component={MatchingAdminRoute}/>
+      <Route path="stockAdmin" component={StockAdminRoute}/>
+      <Route path="signup" component={SignUpContainer}/>
     </Route>
   </Router>, document.getElementById('app'));

@@ -2,6 +2,7 @@
 body {
   color: #000;
   background: #fff;
+  font-family: 'Open Sans', sans-serif;
 }
 
 .index {
@@ -128,4 +129,20 @@ body {
   animation-timing-function: linear;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
+}
+
+/* SIGN-UP */
+
+.sign-up {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.sign-up .title {
+  font-size: 60px;
+  text-align: center;
+  color: #00bcd4;
 }
