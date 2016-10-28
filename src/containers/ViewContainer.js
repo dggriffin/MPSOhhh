@@ -11,6 +11,8 @@ const base = Rebase.createClass({
       storageBucket: ''
 });
 
+let Sound = require('react-sound');
+
 class ViewContainer extends React.Component {
 
   constructor(props) {
@@ -48,12 +50,33 @@ class ViewContainer extends React.Component {
     })
   }
 
+  getAudio() {
+    let audio = '';
+    switch (this.props.baseUrl) {
+      case 'quantity' :
+        audio = '../images/D&C Halloween Audio/Circus Mockery2.mp3';
+        break;
+
+      case 'matching' :
+        audio = '../images/D&C Halloween Audio/Final - Latin Chanting Overlapped.mp3';
+        break;
+
+      case 'stock' :
+        audio = "../images/D&C Halloween Audio/Witch's Hut.mp3";
+        break;
+    }
+    return <Sound
+      url={audio}
+      playStatus={this.state.state && (this.state.state === 'IN-PROGRESS' || this.state.state === 'FAILURE') ? Sound.status.PLAYING : Sound.status.STOPPED}
+      playFromPosition={0}/>
+  }
+
   render() {
     let currentView = () => {
       switch(this.state.state) {
         case 'IN-PROGRESS' :
         case 'READY' :
-          return <div>{React.cloneElement(this.props.children, { handleCodeEntry: this.handleCodeEntry.bind(this) })}</div>
+          return <div>{React.cloneElement(this.props.children, { state: this.state.state, handleCodeEntry: this.handleCodeEntry.bind(this) })}</div>
 
         case 'FAILURE' :
           return <FailureView/>
@@ -64,6 +87,7 @@ class ViewContainer extends React.Component {
     }
     return (
       <div>
+        {this.getAudio()}
         {currentView()}
       </div>
     );

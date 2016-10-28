@@ -11,6 +11,8 @@ class QuantityView extends React.Component {
       this.props.handleCodeEntry(code);
   }
 
+
+
   render() {
     return (
       <div className="index">

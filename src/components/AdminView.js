@@ -22,6 +22,7 @@ class AdminView extends React.Component {
   }
 
   handleResetClick() {
+    this.setState({participant: ''});
     this.props.handleViewReset();
   }
 
@@ -71,6 +72,7 @@ class AdminView extends React.Component {
           dataSource={Object.keys(this.props.participants)}
           maxSearchResults={5}
           disabled={this.props.state !== 'READY'}
+          searchText={this.state.participant}
           onNewRequest={this.handleParticipantChange.bind(this)}
         >
         </AutoComplete>

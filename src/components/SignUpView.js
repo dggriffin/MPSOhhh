@@ -16,6 +16,7 @@ class SignUpView extends React.Component {
 
   handleOnClick() {
     this.props.submitSignUpInfo(this.state.firstName, this.state.lastName, this.state.teamName);
+    this.setState({firstName: '', lastName: '', teamName: ''});
   }
 
   handleFirstNameChange(event) {
