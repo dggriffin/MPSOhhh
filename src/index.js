@@ -53,8 +53,8 @@ const StockRoute = React.createClass({
 const QuantityAdminRoute = React.createClass({
     render() {
       return (
-        <AdminContainer baseUrl='quantity'>
-          <AdminView/>
+        <AdminContainer baseUrl='quantity' title='Quantity Admin'>
+          <AdminView />
         </AdminContainer>
       );
     }
@@ -63,7 +63,7 @@ const QuantityAdminRoute = React.createClass({
 const MatchingAdminRoute = React.createClass({
     render() {
       return (
-        <AdminContainer baseUrl='matching'>
+        <AdminContainer baseUrl='matching' title='Matching Admin'>
           <AdminView/>
         </AdminContainer>
       );
@@ -73,7 +73,7 @@ const MatchingAdminRoute = React.createClass({
 const StockAdminRoute = React.createClass({
     render() {
       return (
-        <AdminContainer baseUrl='stock'>
+        <AdminContainer baseUrl='stock' title='Stock Admin'>
           <AdminView/>
         </AdminContainer>
       );

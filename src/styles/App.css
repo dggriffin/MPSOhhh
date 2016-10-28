@@ -5,6 +5,7 @@ body {
   font-family: 'Open Sans', sans-serif;
 }
 
+/* quanitity */
 .index {
   display: flex;
   justify-content: center;
@@ -17,7 +18,7 @@ body {
   animation: games 0s infinite;
 }
 
-.mpso {
+.index .mpso {
   align-self: center;
   white-space: nowrap;
   width: 966px;
@@ -36,6 +37,78 @@ body {
   border-radius: 2px;
   left: -132px;
   top: -109px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* STOCK */
+.stock {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.stock img {
+  object-fit: none;
+  animation: games 0s infinite;
+}
+
+.stock .mpso {
+  align-self: center;
+  white-space: nowrap;
+  width: 966px;
+}
+
+.stock .next {
+  height: 30px;
+  width: 110px;
+  background-color: #38454f;
+  font-family: Arial, Helvetica;
+  font-weight: 600;
+  color: #FFF;
+  border: none;
+  font-size: 14px;
+  box-shadow: 0 2px #111a22;
+  border-radius: 2px;
+  left: -131px;
+  top: -20px;
+  position: relative;
+  cursor: pointer;
+}
+
+/* MATCHING */
+.matching {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+}
+
+.matching img {
+  object-fit: none;
+  animation: games 0s infinite;
+}
+
+.matching .mpso {
+  align-self: center;
+  white-space: nowrap;
+  width: 966px;
+}
+
+.matching .next {
+  height: 30px;
+  width: 60px;
+  background-color: #38454f;
+  font-family: Arial, Helvetica;
+  font-weight: 600;
+  color: #FFF;
+  border: none;
+  font-size: 14px;
+  box-shadow: 0 2px #111a22;
+  border-radius: 2px;
+  left: -82px;
+  top: -825px;
   position: relative;
   cursor: pointer;
 }
@@ -145,4 +218,37 @@ body {
   font-size: 60px;
   text-align: center;
   color: #00bcd4;
+}
+
+/* ADMIN */
+
+.admin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.admin .title {
+  font-size: 60px;
+  text-align: center;
+  color: #00bcd4;
+}
+
+.admin .timer {
+  margin-top: 20px;
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  background-color: #E9E9E9;
+  width: 90%;
+  border-radius: 5px;
+}
+
+.admin .state {
+  margin-top: 20px;
+  font-size: 35px;
+  color: #D9D9D9;
+  text-align: center;
 }

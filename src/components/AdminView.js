@@ -1,16 +1,20 @@
 require('styles/App.css');
 
 import React from 'react';
-import {RaisedButton, TextField} from 'material-ui';
-import Timer from './Timer';
+import {RaisedButton, TextField, AutoComplete, MenuItem} from 'material-ui';
 
 class AdminView extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       participant: '',
-      state: ''
+      state: '',
+      code: this.props.code
     };
+  }
+
+  componentWillReceiveProps(newProps) {
+    this.setState({code: newProps.code});
   }
 
   handleStartClick() {
@@ -19,6 +23,18 @@ class AdminView extends React.Component {
 
   handleResetClick() {
     this.props.handleViewReset();
+  }
+
+  handleChangePassword(event) {
+    this.setState({code: event.target.value});
+  }
+
+  handleSubmitPassword() {
+    this.props.handleChangePassword(this.state.code);
+  }
+
+  handleParticipantChange(value) {
+    this.setState({participant: value});
   }
 
   getMinute() {
@@ -39,34 +55,54 @@ class AdminView extends React.Component {
 
   render() {
     return (
-      <div className="sign-up">
+      <div className="admin">
         <div className="title">
-          Admin View
+          {this.props.title}
         </div>
-        {this.getMinute()} : {this.getSeconds()}
-        <div>
-          <TextField
-
-            value={this.state.firstName}
-            floatingLabelText="First Name"
-          /><br />
-          <TextField
-
-            value={this.state.lastName}
-            floatingLabelText="Last Name"
-          /><br />
-          <TextField
-
-            value={this.state.teamName}
-            floatingLabelText="Work Team Name"
-          /><br />
-          <RaisedButton
-            label="Submit"
-            primary={true}
-            style={{width: '100%', marginTop: 25}}
-
-          />
+        <div className="timer">
+          {this.getMinute()} : {this.getSeconds()}
         </div>
+        <div className="state">
+          Room State: <br/> {this.props.state}
+        </div>
+        <AutoComplete
+          filter={AutoComplete.caseInsensitiveFilter}
+          floatingLabelText="Current Participant"
+          dataSource={Object.keys(this.props.participants)}
+          maxSearchResults={5}
+          disabled={this.props.state !== 'READY'}
+          onNewRequest={this.handleParticipantChange.bind(this)}
+        >
+        </AutoComplete>
+        <RaisedButton
+          label="Start"
+          primary={true}
+          disabled={this.props.state !== 'READY' || !this.state.participant}
+          style={{width: '90%', marginTop: 25}}
+          onClick={this.handleStartClick.bind(this)}
+        />
+        <RaisedButton
+          label="Reset"
+          primary={true}
+          disabled={this.props.state !== 'SUCCESS' && this.props.state !== 'FAILURE'}
+          style={{width: '90%', marginTop: 25}}
+          onClick={this.handleResetClick.bind(this)}
+        />
+        <div className="code">
+          <TextField
+            value={this.state.code}
+            floatingLabelText="Room Code"
+            disabled={this.props.state !== 'READY'}
+            onChange={this.handleChangePassword.bind(this)}
+          /><br />
+        </div>
+        <RaisedButton
+          label="Change Code"
+          secondary={true}
+          disabled={this.props.state !== 'READY'}
+          style={{width: '90%', marginBottom: 10}}
+          onClick={this.handleSubmitPassword.bind(this)}
+        />
       </div>
     );
   }

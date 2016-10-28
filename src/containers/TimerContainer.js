@@ -57,7 +57,7 @@ class TimerContainer extends React.Component {
   render() {
     return (
       <div>
-        {<Timer active={this.state.active} handleTimeTick={this.handleTimeTick.bind(this)}/>}
+        {<Timer time={this.state.time} active={this.state.active} handleTimeTick={this.handleTimeTick.bind(this)}/>}
       </div>
     );
   }

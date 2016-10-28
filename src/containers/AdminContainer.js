@@ -30,6 +30,18 @@ class AdminContainer extends React.Component {
       context: this,
       state: 'participants'
     });
+
+    base.listenTo(`${this.props.baseUrl}/state`, {
+      context: this,
+      then(state) {
+        if (state === 'SUCCESS' || state === 'FAILURE') {
+          base.post(`participants/${this.state.data.participant}/${this.props.baseUrl}Time`, {
+            context: this,
+            data: this.state.data.time
+          });
+        }
+      }
+    })
   }
 
   handleViewReset() {
@@ -44,14 +56,21 @@ class AdminContainer extends React.Component {
     });
   }
 
-  handleViewStart(particpantGUID) {
+  handleViewStart(participant) {
     base.post(`${this.props.baseUrl}`, {
       context: this,
       data: {
         ...this.state.data,
         state: 'IN-PROGRESS',
-        participant: particpantGUID
+        participant: this.state.participants[participant]
       }
+    });
+  }
+
+  handleChangePassword(code) {
+    base.post(`${this.props.baseUrl}/code`, {
+      context: this,
+      data: code
     });
   }
 
@@ -63,8 +82,11 @@ class AdminContainer extends React.Component {
             participants: this.state.participants,
             time: this.state.data.time,
             state: this.state.data.state,
+            title: this.props.title,
+            code: this.state.data.code,
             handleViewStart: this.handleViewStart.bind(this),
-            handleViewReset: this.handleViewReset.bind(this)
+            handleViewReset: this.handleViewReset.bind(this),
+            handleChangePassword: this.handleChangePassword.bind(this)
           })
         }
       </div>

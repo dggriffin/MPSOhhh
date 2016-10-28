@@ -38,10 +38,10 @@ class ViewContainer extends React.Component {
   }
 
   handleCodeEntry(code) {
-    base.fetch(`${this.props.baseUrl}/${code}`, {
+    base.fetch(`${this.props.baseUrl}/code`, {
       context: this,
       then(data){
-        if (data) {
+        if (data === code) {
           this.setState({state: 'SUCCESS'});
         }
       }
