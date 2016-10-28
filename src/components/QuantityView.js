@@ -18,7 +18,9 @@ class QuantityView extends React.Component {
           <img src={testImg}/>
           <button onClick={this.handleOnClick.bind(this)} className="next hvr-buzz">Next</button>
         </div>
-        <TimerContainer baseUrl='quantity' />
+        <div className='timer'>
+          <TimerContainer baseUrl='quantity' />
+        </div>
       </div>
     );
   }

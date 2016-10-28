@@ -18,7 +18,9 @@ class MatchingView extends React.Component {
           <img src={testImg}/>
           <button onClick={this.handleOnClick.bind(this)} className="next hvr-buzz">Next</button>
         </div>
-        <TimerContainer baseUrl='matching' />
+        <div className='timer'>
+          <TimerContainer baseUrl='matching' />
+        </div>
       </div>
     );
   }
